@@ -1,35 +1,23 @@
 import React from 'react';
-import {NavLink, Link} from 'react-router-dom';
-import styles from './Header.scss';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import PageNav from '../PageNav/PageNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAtom } from '@fortawesome/free-solid-svg-icons';
+import styles from './Header.module.scss';
 
 class Header extends React.Component {
   render(){
     return (
       <header className={styles.component}>
-        <Grid>
-          <Row between="md" middle="xs">
-            <Col md={3} lg={2}>
-              <Link to='/'>
-                <div className={styles.logo}>
-                  <span className={styles.name}>Travel Agency</span>
-                </div>
-              </Link>
-            </Col>
-            <Col md={6}>
-              <nav>
-                <NavLink to='/trips' activeClassName='active'>Trips</NavLink>
-                <NavLink to='/countries' activeClassName='active'>Countries</NavLink>
-                <NavLink to='/regions' activeClassName='active'>Regions</NavLink>
-                <NavLink to='/info' activeClassName='active'>Contact</NavLink>
-              </nav>
-            </Col>
-            <Col md={3} lg={2}>
-              <div className={styles.contact}>
-              </div>
-            </Col>
-          </Row>
-        </Grid>
+        <FontAwesomeIcon icon={faAtom} className={styles.logoIcon} />
+        <div className={styles.logoText}>
+          <div className={styles.name}>Atom</div>
+          <div className={styles.name}>React</div>
+          <div className={styles.name}>Redux</div>
+          <div className={styles.name}>HTML</div>
+          <div className={styles.name}>CSS</div>
+          <div className={styles.name}>JavaScript</div>
+        </div>
+        <PageNav />
       </header>
     );
   }

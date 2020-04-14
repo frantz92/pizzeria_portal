@@ -9,15 +9,18 @@
     font-size: ($base-size * 1.3);
     display: flex;
     justify-content: center;
-    align-content: center;
+    position: relative;
 
     a {
       color: $color-light;
-      margin-right: ($base-size * 3);
+      margin-right: ($base-size * 7);
       padding-bottom: ($base-size / 2);
-      transition: color 0.4s linear;
+      transition: color 0.3s linear;
+      text-decoration: none;
+      font-family: $font-header;
+
       &:last-of-type {
-        margin-right: 0;
+        margin-right: ($base-size * 3);
       }
       &:hover {
         color: $color-primary;
@@ -26,23 +29,26 @@
         border-bottom: 4px solid $color-primary;
       }
     }
-
   }
-
 }
 
-.logo {
-  color: $color-light;
-  font-size: 24px;
+.logoIcon {
+  color: $color-primary;
+  font-size: ($base-size * 6);
+  padding: 0 0 0 20px;
+  position: absolute;
+}
+
+.logoText {
+  position: absolute;
+  top: 30px;
+  left: 92px;
 }
 
 .name {
-  position: relative;
-  top: ($base-size / -4);
-  left: $base-size;
   font-family: $font-header;
-  text-transform: lowercase;
-  font-size: ($base-size * 1.5);
+  font-size: ($base-size - 3);
+  color: $color-primary;
 }
 
 .contact {

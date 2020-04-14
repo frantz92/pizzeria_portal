@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import PageNav from './components/layout/PageNav/PageNav';
+import Header from './components/layout/Header/Header';
+
 
 import Booking from './components/views/Booking/Booking';
 import Dashboard from './components/views/Dashboard/Dashboard';
@@ -18,7 +20,7 @@ function App() {
   return (
     <BrowserRouter basename={'/panel'}>
       <MainLayout>
-        <PageNav />
+        <Header />
         <Switch>
           <Route exact path={process.env.PUBLIC_URL + '/tables/booking/:id'} component={Booking} />
           <Route exact path={process.env.PUBLIC_URL + '/'} component={Dashboard} />
