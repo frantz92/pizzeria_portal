@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
-import PageNav from './components/layout/PageNav/PageNav';
 import Header from './components/layout/Header/Header';
 
 
