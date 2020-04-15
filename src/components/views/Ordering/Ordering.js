@@ -1,7 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, LinearProgress} from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Slide, Container, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, LinearProgress} from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CancelIcon from '@material-ui/icons/Cancel';
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function createData(name, actionLink, actionName, statusName, statusBar, time, sum, id) {
   return { name, actionLink, actionName, statusName, statusBar, time, sum, id };
@@ -22,7 +27,23 @@ function checkReady(row){
   }
 }
 
+function checkNew(row){
+  if(row.actionName === 'New'){
+    return true;
+  }
+}
+
 const Ordering = ({orderId='Order_1'}) => {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Container>
@@ -45,7 +66,32 @@ const Ordering = ({orderId='Order_1'}) => {
                   {row.name}
                 </TableCell>
                 <TableCell align="center">
-                  <Button variant="contained" color="primary" href={row.actionLink}>{row.actionName}</Button>
+                  <Button
+                    onClick={((checkNew(row)) ? null : handleClickOpen)}
+                    variant="contained"
+                    color="primary"
+                    href={((checkNew(row)) ? row.actionLink : null)}
+                    >
+                    {row.actionName}
+                  </Button>
+                  <Dialog
+                    open={open}
+                    TransitionComponent={Transition}
+                    //keepMounted
+                    onClose={handleClose}
+                    //aria-labelledby="alert-dialog-slide-title"
+                    //aria-describedby="alert-dialog-slide-description"
+                  >
+                    <DialogTitle align="center" /*id="alert-dialog-slide-title"*/>Confirm</DialogTitle>
+                    <DialogActions>
+                      <Button onClick={handleClose} color="secondary">
+                        <CancelIcon />
+                      </Button>
+                      <Button onClick={handleClose} color="primary">
+                        <CheckCircleIcon />
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                 </TableCell>
                 <TableCell align="center">
                   <React.Fragment>
@@ -57,7 +103,14 @@ const Ordering = ({orderId='Order_1'}) => {
                   {row.time}
                 </TableCell>
                 <TableCell align="center">{row.sum}</TableCell>
-                <TableCell align="center"><Link to={`/ordering/order/${orderId}`/*<={row.id}*/}>{row.id}</Link></TableCell>
+                <TableCell align="center">
+                  <Link
+                    to={`/ordering/order/${orderId}`/*<={row.id}*/}
+                    color="inherit"
+                    underline="none"
+                    >
+                    {row.id}
+                  </Link></TableCell>
               </TableRow>
             ))}
           </TableBody>
