@@ -94,7 +94,7 @@ export class UserForm extends Component {
           </div>
         );
       case 2:
-        return (window.location.pathname = '/panel/');
+        window.location.pathname = '/panel/';
     }
   }
 }

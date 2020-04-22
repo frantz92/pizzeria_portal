@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { withTheme } from '@material-ui/core';
+import { faPlaneArrival } from '@fortawesome/free-solid-svg-icons';
 
 export class FormPersonalDetails extends Component {
   validateForm = () => {
@@ -106,6 +111,25 @@ export class FormPersonalDetails extends Component {
               defaultValue={values.passwordConfirm}
               errorText={values.passwordConfirmError}
             />
+            <RadioGroup
+              style={styles.radio}
+              row
+              aria-label='position'
+              name='position'
+            >
+              <FormControlLabel
+                value='waiter'
+                control={<Radio color='primary' />}
+                label='Waiter'
+                labelPlacement='end'
+              />
+              <FormControlLabel
+                value='cook'
+                control={<Radio color='primary' />}
+                label='Cook'
+                labelPlacement='start'
+              />
+            </RadioGroup>
           </div>
           <div style={styles.buttonContainer}>
             <Button
@@ -158,6 +182,9 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '20px',
+  },
+  radio: {
+    color: 'white',
   },
 };
 
