@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
 import Dashboard from '../Dashboard/Dashboard';
+import PageNav from '../../layout/PageNav/PageNav';
+import RegisterForm from './RegisterForm';
 
 export class UserForm extends Component {
   state = {
@@ -9,6 +11,9 @@ export class UserForm extends Component {
     emailError: '',
     password: '',
     passwordError: '',
+    passwordConfirm: '',
+    name: '',
+    surname: '',
   };
 
   // Proceed to the next step
@@ -36,26 +41,60 @@ export class UserForm extends Component {
 
   render() {
     const { step } = this.state;
-    const { email, emailError, password, passwordError } = this.state;
+    const {
+      email,
+      emailError,
+      password,
+      passwordError,
+      passwordConfirm,
+      passwordConfirmError,
+      name,
+      nameError,
+      surname,
+      surnameError,
+    } = this.state;
     const values = {
       email,
       emailError,
       password,
       passwordError,
+      passwordConfirm,
+      passwordConfirmError,
+      name,
+      nameError,
+      surname,
+      surnameError,
     };
 
     // eslint-disable-next-line default-case
     switch (step) {
+      case 0:
+        return (
+          <div>
+            <PageNav />
+            <RegisterForm
+              nextStep={this.nextStep}
+              prevStep={this.nextStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          </div>
+        );
+
       case 1:
         return (
-          <FormUserDetails
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
+          <div>
+            <PageNav />
+            <FormUserDetails
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          </div>
         );
       case 2:
-        return Dashboard();
+        return (window.location.pathname = '/panel/');
     }
   }
 }

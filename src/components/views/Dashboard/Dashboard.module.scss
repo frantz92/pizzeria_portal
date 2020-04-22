@@ -1,0 +1,32 @@
+@import '../../../styles/settings.scss';
+
+.component {
+  width: 100%;
+  min-height: 1000px;
+}
+
+.background {
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+  margin: 0;
+  color: whitesmoke;
+  font-family: $font-text;
+}
+
+body {
+  margin: 0;
+  background-image: url('../../../images/dashboard_background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 720px;
+  padding: 20px;
+}
+
+.icon {
+  font-size: 20px;
+  display: block;
+}

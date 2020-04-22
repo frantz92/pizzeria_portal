@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PageNav from '../../layout/PageNav/PageNav';
+
 import {
   Dialog,
   DialogActions,
@@ -67,6 +69,7 @@ const Ordering = ({ orderId = 'Order_1' }) => {
 
   return (
     <div>
+      <PageNav />
       <Table>
         <TableHead>
           <TableRow>

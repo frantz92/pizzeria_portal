@@ -17,6 +17,8 @@ import Ordering from './components/views/Ordering/Ordering';
 import Tables from './components/views/Tables/Tables';
 
 function App() {
+  console.log(window.location);
+
   return (
     <Provider store={store}>
       <BrowserRouter basename={'/panel'}>
