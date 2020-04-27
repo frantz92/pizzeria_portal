@@ -5,9 +5,6 @@
   min-height: 1000px;
 }
 
-.background {
-}
-
 h1,
 h2,
 h3 {
@@ -19,7 +16,8 @@ h3 {
 
 body {
   margin: 0;
-  background-image: url('../../../images/dashboard_background.jpg');
+  //background-image: url('../../../images/dashboard_background.jpg');
+  background-color: white;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 720px;

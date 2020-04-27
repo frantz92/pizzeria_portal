@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { withTheme } from '@material-ui/core';
-import { faPlaneArrival } from '@fortawesome/free-solid-svg-icons';
 
 export class FormPersonalDetails extends Component {
   validateForm = () => {

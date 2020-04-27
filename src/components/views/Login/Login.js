@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
-import Dashboard from '../Dashboard/Dashboard';
 import PageNav from '../../layout/PageNav/PageNav';
 import RegisterForm from './RegisterForm';
 

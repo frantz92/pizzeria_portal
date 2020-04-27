@@ -1,72 +1,9 @@
 @import '../../../styles/settings.scss';
 
-.component {
-  background: $color-dark;
-  padding: ($base-size * 1.5) 0;
-  color: $color-light;
-
-  nav {
-    font-size: ($base-size * 1.3);
-    justify-content: center;
-
-    a {
-      color: $color-light;
-      margin-right: ($base-size * 7);
-      padding-bottom: ($base-size / 2);
-      transition: color 0.3s linear;
-      text-decoration: none;
-      font-family: $font-header;
-
-      &:last-of-type {
-        margin-right: ($base-size * 3);
-      }
-      &:hover {
-        color: $color-primary;
-      }
-      &:global(.active) {
-        border-bottom: 4px solid $color-primary;
-      }
-    }
-  }
-}
-
-.logoIcon {
-  color: $color-primary;
-  font-size: ($base-size * 6);
-  padding: 0 0 0 20px;
-  position: absolute;
-}
-
-.logoText {
-  position: absolute;
-  top: 30px;
-  left: 92px;
-}
-
-.name {
-  font-family: $font-header;
-  font-size: ($base-size - 3);
-  color: $color-primary;
-}
-
-.contact {
-  text-align: right;
-  span {
-    padding-left: $base-size;
-  }
-}
-
-@media (max-width: 767px) {
-  .component {
-    text-align: center;
-
-    nav {
-      margin-top: ($base-size * 1.5);
-    }
-  }
-
-  .contact {
-    text-align: center;
-    margin-top: ($base-size * 1.5);
-  }
+.header {
+  float: right;
+  font-family: $font-text;
+  background-color: #65c241;
+  margin: 0;
+  padding: 0;
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Button from '@material-ui/core/Button';
-import { NavLink } from 'react-router-dom';
 
 export class FormUserDetails extends Component {
   validateForm = () => {

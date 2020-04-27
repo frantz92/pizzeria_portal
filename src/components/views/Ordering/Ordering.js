@@ -13,7 +13,7 @@ import {
   TableCell,
   TableBody,
   Button,
-  LinearProgress,
+  CircularProgress,
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -105,7 +105,7 @@ const Ordering = ({ orderId = 'Order_1' }) => {
     <div>
       <PageNav />
       <Table>
-        <TableHead>
+        <TableHead style={{ display: 'none' }}>
           <TableRow>
             <TableCell width='10%' align='center'>
               Table n°
@@ -136,7 +136,9 @@ const Ordering = ({ orderId = 'Order_1' }) => {
                   row.statusName === 'ready' ? 'green' : 'transpaernt',
               }}
             >
-              <TableCell align='center'>{row.name}</TableCell>
+              <TableCell align='center' style={styles.table}>
+                {row.name}
+              </TableCell>
               <TableCell align='center'>
                 <Button
                   onClick={row.actionName === 'New' ? null : handleClickOpen}
@@ -174,12 +176,13 @@ const Ordering = ({ orderId = 'Order_1' }) => {
               </TableCell>
               <TableCell align='center'>
                 <React.Fragment>
-                  <LinearProgress
+                  <CircularProgress
                     variant='determinate'
+                    thickness='2'
                     value={row.statusBar}
-                    color='secondary'
+                    style={styles.progressCircle}
                   />
-                  <p>{row.statusName}</p>
+                  <p style={styles.progressName}>{row.statusName}</p>
                 </React.Fragment>
               </TableCell>
               <TableCell align='center'>{row.time}</TableCell>
@@ -187,8 +190,7 @@ const Ordering = ({ orderId = 'Order_1' }) => {
               <TableCell align='center'>
                 <Link
                   to={`/ordering/order/${orderId}` /*<={row.id}*/}
-                  color='inherit'
-                  underline='none'
+                  style={styles.button}
                 >
                   {row.id}
                 </Link>
@@ -214,6 +216,17 @@ const styles = {
     textAlign: 'center',
     margin: '5px',
     color: 'black',
+    textDecoration: 'none',
+  },
+  table: {
+    fontSize: '20px',
+  },
+  progressCircle: {
+    color: 'yellow',
+  },
+  progressName: {
+    textTransform: 'uppercase',
+    fontSize: '12px',
   },
 };
 export default Ordering;
