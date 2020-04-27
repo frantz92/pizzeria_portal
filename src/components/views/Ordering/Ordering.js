@@ -25,36 +25,70 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function createData(
   name,
   actionLink,
+  secondActionLink,
   actionName,
+  secondActionName,
   statusName,
   statusBar,
   time,
   sum,
   id
 ) {
-  return { name, actionLink, actionName, statusName, statusBar, time, sum, id };
+  return {
+    name,
+    actionLink,
+    secondActionLink,
+    actionName,
+    secondActionName,
+    statusName,
+    statusBar,
+    time,
+    sum,
+    id,
+  };
 }
 
 const rows = [
-  createData('1', 'ordering/new', 'New', 'ordered', 20, '12:40', 12, '#102'),
-  createData('2', 'ordering/new', 'New', 'preparing', 40, '12:33', 120, '#205'),
-  createData('3', 'pop', 'Delivered', 'ready', 60, '12:26', 60, '#303'),
-  createData('4', 'pop', 'New/Pay', 'delivered', 80, '12:02', 40, '#407'),
-  createData('5', 'pop', 'Cleaned', 'payed', 100, '11:59', 85, '#502'),
-  createData('6', 'ordering/new', 'New', '', 0, '--:--', 0, '#---'),
+  createData(
+    '1',
+    'ordering/new',
+    '',
+    'New',
+    '',
+    'ordered',
+    20,
+    '12:40',
+    12,
+    '#102'
+  ),
+  createData(
+    '2',
+    'ordering/new',
+    '',
+    'New',
+    '',
+    'preparing',
+    40,
+    '12:33',
+    120,
+    '#205'
+  ),
+  createData('3', 'pop', '', 'Delivered', '', 'ready', 60, '12:26', 60, '#303'),
+  createData(
+    '4',
+    'ordering/new',
+    'pop',
+    'New',
+    'Pay',
+    'delivered',
+    80,
+    '12:02',
+    40,
+    '#407'
+  ),
+  createData('5', 'pop', '', 'Cleaned', '', 'payed', 100, '11:59', 85, '#502'),
+  createData('6', 'ordering/new', '', 'New', '', '', 0, '--:--', 0, '#---'),
 ];
-
-function checkReady(row) {
-  if (row.statusName === 'ready') {
-    return true;
-  }
-}
-
-function checkNew(row) {
-  if (row.actionName === 'New') {
-    return true;
-  }
-}
 
 const Ordering = ({ orderId = 'Order_1' }) => {
   const [open, setOpen] = React.useState(false);
@@ -97,29 +131,37 @@ const Ordering = ({ orderId = 'Order_1' }) => {
           {rows.map(row => (
             <TableRow
               key={row.name}
-              style={{ backgroundColor: checkReady(row) ? 'green' : 'white' }}
+              style={{
+                backgroundColor:
+                  row.statusName === 'ready' ? 'green' : 'transpaernt',
+              }}
             >
               <TableCell align='center'>{row.name}</TableCell>
               <TableCell align='center'>
                 <Button
-                  onClick={checkNew(row) ? null : handleClickOpen}
-                  variant='contained'
-                  color='primary'
-                  href={checkNew(row) ? row.actionLink : null}
+                  onClick={row.actionName === 'New' ? null : handleClickOpen}
+                  style={styles.button}
+                  href={row.actionName === 'New' ? row.actionLink : null}
                 >
                   {row.actionName}
                 </Button>
+                {row.statusName === 'delivered' ? (
+                  <Button
+                    onClick={handleClickOpen}
+                    style={styles.button}
+                    href={null}
+                  >
+                    {row.secondActionName}
+                  </Button>
+                ) : (
+                  ''
+                )}
                 <Dialog
                   open={open}
                   TransitionComponent={Transition}
-                  //keepMounted
                   onClose={handleClose}
-                  //aria-labelledby="alert-dialog-slide-title"
-                  //aria-describedby="alert-dialog-slide-description"
                 >
-                  <DialogTitle align='center' /*id="alert-dialog-slide-title"*/>
-                    Confirm
-                  </DialogTitle>
+                  <DialogTitle align='center'>Confirm</DialogTitle>
                   <DialogActions>
                     <Button onClick={handleClose} color='secondary'>
                       <CancelIcon />
@@ -159,4 +201,19 @@ const Ordering = ({ orderId = 'Order_1' }) => {
   );
 };
 
+const styles = {
+  button: {
+    borderColor: 'yellow',
+    borderStyle: 'solid',
+    borderWidth: '2px',
+    borderRadius: '35%',
+    padding: '15px',
+    height: '70px',
+    width: '100px',
+    fontSize: '15px',
+    textAlign: 'center',
+    margin: '5px',
+    color: 'black',
+  },
+};
 export default Ordering;
