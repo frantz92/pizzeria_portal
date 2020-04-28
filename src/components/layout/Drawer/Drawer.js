@@ -16,7 +16,7 @@ import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   drawerContainer: {
-    margin: '20px 0 0 0',
+    marginTop: '76px',
   },
   drawerPaper: {
     backgroundColor: '#383937',
@@ -27,6 +27,25 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     color: 'black',
   },
+  listItem: {
+    display: 'block',
+    marginTop: '15px',
+  },
+  listItemIcon: {
+    width: '100%',
+    justifyContent: 'center',
+  },
+  icon: {
+    fontSize: '60px',
+  },
+  listItemText: {
+    width: '100%',
+    margin: '0',
+    textAlign: 'center',
+  },
+  divider: {
+    backgroundColor: '#65C241',
+  },
 }));
 
 export default function ClippedDrawer() {
@@ -35,14 +54,16 @@ export default function ClippedDrawer() {
   const [selectedIndex, setSelectedIndex] = useState();
 
   React.useEffect(() => {
-    const data = localStorage.getItem('lastState');
+    const data = localStorage.getItem('previousState');
     if (data) {
       setSelectedIndex(JSON.parse(data));
+    } else {
+      setSelectedIndex(0);
     }
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem('lastState', JSON.stringify(selectedIndex));
+    localStorage.setItem('previousState', JSON.stringify(selectedIndex));
   });
 
   return (
@@ -52,7 +73,6 @@ export default function ClippedDrawer() {
         paper: classes.drawerPaper,
       }}
     >
-      <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
           <NavLink
@@ -66,28 +86,23 @@ export default function ClippedDrawer() {
             onClick={() => setSelectedIndex(0)}
           >
             <ListItem
+              className={classes.listItem}
               button
               key={'Home'}
               selected={selectedIndex === 0}
               style={{
-                display: 'block',
-                marginTop: '15px',
                 borderLeft: selectedIndex === 0 ? '5px solid #65C241' : 'none',
               }}
             >
               <ListItemIcon
+                className={classes.listItemIcon}
                 style={{
                   color: selectedIndex === 0 ? 'white' : 'black',
-                  width: '100%',
-                  justifyContent: 'center',
                 }}
               >
-                <HomeIcon style={{ fontSize: '60px' }} />
+                <HomeIcon className={classes.icon} />
               </ListItemIcon>
-              <ListItemText
-                primary={'Home'}
-                style={{ width: '100%', margin: '0', textAlign: 'center' }}
-              />
+              <ListItemText className={classes.listItemText} primary={'Home'} />
             </ListItem>
           </NavLink>
 
@@ -102,27 +117,25 @@ export default function ClippedDrawer() {
             onClick={() => setSelectedIndex(1)}
           >
             <ListItem
+              className={classes.listItem}
               button
               key={'Ordering'}
               selected={selectedIndex === 1}
               style={{
-                display: 'block',
-                marginTop: '15px',
                 borderLeft: selectedIndex === 1 ? '5px solid #65C241' : 'none',
               }}
             >
               <ListItemIcon
+                className={classes.listItemIcon}
                 style={{
                   color: selectedIndex === 1 ? 'white' : 'black',
-                  width: '100%',
-                  justifyContent: 'center',
                 }}
               >
-                <RoomServiceIcon style={{ fontSize: '60px' }} />
+                <RoomServiceIcon className={classes.icon} />
               </ListItemIcon>
               <ListItemText
+                className={classes.listItemText}
                 primary={'Ordering'}
-                style={{ width: '100%', margin: '0', textAlign: 'center' }}
               />
             </ListItem>
           </NavLink>
@@ -138,27 +151,25 @@ export default function ClippedDrawer() {
             onClick={() => setSelectedIndex(2)}
           >
             <ListItem
+              className={classes.listItem}
               button
               key={'Booking'}
               selected={selectedIndex === 2}
               style={{
-                display: 'block',
-                marginTop: '15px',
                 borderLeft: selectedIndex === 2 ? '5px solid #65C241' : 'none',
               }}
             >
               <ListItemIcon
+                className={classes.listItemIcon}
                 style={{
                   color: selectedIndex === 2 ? 'white' : 'black',
-                  width: '100%',
-                  justifyContent: 'center',
                 }}
               >
-                <MenuBookIcon style={{ fontSize: '60px' }} />
+                <MenuBookIcon className={classes.icon} />
               </ListItemIcon>
               <ListItemText
+                className={classes.listItemText}
                 primary={'Booking'}
-                style={{ width: '100%', margin: '0', textAlign: 'center' }}
               />
             </ListItem>
           </NavLink>
@@ -172,32 +183,30 @@ export default function ClippedDrawer() {
             onClick={() => setSelectedIndex(3)}
           >
             <ListItem
+              className={classes.listItem}
               button
               key={'Kitchen'}
               selected={selectedIndex === 3}
               style={{
-                display: 'block',
-                marginTop: '15px',
                 borderLeft: selectedIndex === 3 ? '5px solid #65C241' : 'none',
               }}
             >
               <ListItemIcon
+                className={classes.listItemIcon}
                 style={{
                   color: selectedIndex === 3 ? 'white' : 'black',
-                  width: '100%',
-                  justifyContent: 'center',
                 }}
               >
-                <KitchenIcon style={{ fontSize: '60px' }} />
+                <KitchenIcon className={classes.icon} />
               </ListItemIcon>
               <ListItemText
+                className={classes.listItemText}
                 primary={'Kitchen'}
-                style={{ width: '100%', margin: '0', textAlign: 'center' }}
               />
             </ListItem>
           </NavLink>
         </List>
-        <Divider style={{ backgroundColor: '#65C241' }} />
+        <Divider className={classes.divider} />
         <List>
           <NavLink
             to={process.env.PUBLIC_URL + '/login'}
@@ -209,27 +218,25 @@ export default function ClippedDrawer() {
             onClick={() => setSelectedIndex(4)}
           >
             <ListItem
+              className={classes.listItem}
               button
               key={'Login'}
               selected={selectedIndex === 4}
               style={{
-                display: 'block',
-                marginTop: '15px',
                 borderLeft: selectedIndex === 4 ? '5px solid #65C241' : 'none',
               }}
             >
               <ListItemIcon
+                className={classes.listItemIcon}
                 style={{
                   color: selectedIndex === 4 ? 'white' : 'black',
-                  width: '100%',
-                  justifyContent: 'center',
                 }}
               >
-                <PersonIcon style={{ fontSize: '60px' }} />
+                <PersonIcon className={classes.icon} />
               </ListItemIcon>
               <ListItemText
+                className={classes.listItemText}
                 primary={'Login'}
-                style={{ width: '100%', margin: '0', textAlign: 'center' }}
               />
             </ListItem>
           </NavLink>

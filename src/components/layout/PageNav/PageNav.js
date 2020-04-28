@@ -10,8 +10,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './PageNav.module.scss';
 
-console.log(window.location);
-
 const PageNav = () => (
   <nav>
     <NavLink
