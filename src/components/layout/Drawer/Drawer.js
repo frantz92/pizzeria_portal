@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -16,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   drawerContainer: {
-    marginTop: '76px',
+    marginTop: '90px',
   },
   drawerPaper: {
     backgroundColor: '#383937',
@@ -29,7 +28,6 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     display: 'block',
-    marginTop: '15px',
   },
   listItemIcon: {
     width: '100%',
@@ -105,7 +103,7 @@ export default function ClippedDrawer() {
               <ListItemText className={classes.listItemText} primary={'Home'} />
             </ListItem>
           </NavLink>
-
+          <Divider className={classes.divider} />
           <NavLink
             exact
             to={process.env.PUBLIC_URL + '/ordering'}
@@ -139,7 +137,7 @@ export default function ClippedDrawer() {
               />
             </ListItem>
           </NavLink>
-
+          <Divider className={classes.divider} />
           <NavLink
             exact
             to={process.env.PUBLIC_URL + '/tables'}
@@ -173,6 +171,7 @@ export default function ClippedDrawer() {
               />
             </ListItem>
           </NavLink>
+          <Divider className={classes.divider} />
           <NavLink
             to={process.env.PUBLIC_URL + '/kitchen'}
             activeClassName='active'
@@ -205,9 +204,7 @@ export default function ClippedDrawer() {
               />
             </ListItem>
           </NavLink>
-        </List>
-        <Divider className={classes.divider} />
-        <List>
+          <Divider className={classes.divider} />
           <NavLink
             to={process.env.PUBLIC_URL + '/login'}
             activeClassName='active'
@@ -240,6 +237,7 @@ export default function ClippedDrawer() {
               />
             </ListItem>
           </NavLink>
+          <Divider className={classes.divider} />
         </List>
       </div>
     </Drawer>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
-import PageNav from '../../layout/PageNav/PageNav';
 import RegisterForm from './RegisterForm';
 
 export class UserForm extends Component {
@@ -70,7 +69,6 @@ export class UserForm extends Component {
       case 0:
         return (
           <div>
-            <PageNav />
             <RegisterForm
               nextStep={this.nextStep}
               prevStep={this.nextStep}
@@ -83,7 +81,6 @@ export class UserForm extends Component {
       case 1:
         return (
           <div>
-            <PageNav />
             <FormUserDetails
               nextStep={this.nextStep}
               prevStep={this.prevStep}
@@ -93,7 +90,7 @@ export class UserForm extends Component {
           </div>
         );
       case 2:
-        window.location.pathname = '/panel/';
+        window.location.pathname = '/panel/login/';
     }
   }
 }
