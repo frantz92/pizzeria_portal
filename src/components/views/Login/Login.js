@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormUserDetails from './FormUserDetails';
+import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
 export class UserForm extends Component {
@@ -81,7 +81,7 @@ export class UserForm extends Component {
       case 1:
         return (
           <div>
-            <FormUserDetails
+            <LoginForm
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               handleChange={this.handleChange}

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { withTheme } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 export class FormUserDetails extends Component {
   validateForm = () => {
@@ -10,14 +8,16 @@ export class FormUserDetails extends Component {
     let isError = false;
     const errors = {};
 
-    if (values.email.indexOf('@') === -1) {
+    if (values.email.indexOf('@') === -1 || values.email.indexOf('.') === -1) {
       isError = true;
       values.emailError = 'Required valid e-mail';
+      values.error = isError;
     }
 
     if (values.password.length < 5) {
       isError = true;
       values.passwordError = 'Required min. 5 characters';
+      values.error = isError;
     }
 
     if (isError) {
@@ -46,13 +46,14 @@ export class FormUserDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <form style={styles.container} noValidate autoComplete='off'>
+      <form style={styles.container}>
         <TextField
           label='email'
           placeholder='enter your email'
           defaultValue={values.email}
           helperText={values.emailError}
           onChange={handleChange('email')}
+          error={values.error}
         />
         <br />
         <TextField
@@ -62,23 +63,20 @@ export class FormUserDetails extends Component {
           defaultValue={values.password}
           helperText={values.passwordError}
           onChange={handleChange('password')}
+          error={values.error}
         />
         <br />
         <Button
-          variant='outlined'
-          label='next'
-          color='primary'
           style={styles.button}
+          variant='outlined'
           onClick={this.continue}
         >
           next
         </Button>
         <h3>or</h3>
         <Button
-          variant='outlined'
-          label='next'
-          color='primary'
           style={styles.button}
+          variant='outlined'
           onClick={this.register}
         >
           register
@@ -107,8 +105,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    height: '50vh',
   },
 };
-
 export default FormUserDetails;
