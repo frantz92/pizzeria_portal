@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { withTheme } from '@material-ui/core';
 
 export class FormUserDetails extends Component {
   validateForm = () => {
@@ -46,50 +46,44 @@ export class FormUserDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <div style={styles.container}>
-            <TextField
-              hintText='enter your email'
-              floatingLabelText='email'
-              onChange={handleChange('email')}
-              errorText={values.emailError}
-              defaultValue={values.email}
-              style={styles.text}
-            />
-            <br />
-            <TextField
-              type='password'
-              hintText='enter your password'
-              floatingLabelText='password'
-              onChange={handleChange('password')}
-              errorText={values.passwordError}
-              defaultValue={values.password}
-              style={styles.text}
-            />
-            <br />
-            <Button
-              variant='outlined'
-              label='next'
-              color='primary'
-              style={styles.button}
-              onClick={this.continue}
-            >
-              next
-            </Button>
-            <h3>or</h3>
-            <Button
-              variant='outlined'
-              label='next'
-              color='primary'
-              style={styles.button}
-              onClick={this.register}
-            >
-              register
-            </Button>
-          </div>
-        </React.Fragment>
-      </MuiThemeProvider>
+      <form style={styles.container} noValidate autoComplete='off'>
+        <TextField
+          label='email'
+          placeholder='enter your email'
+          defaultValue={values.email}
+          helperText={values.emailError}
+          onChange={handleChange('email')}
+        />
+        <br />
+        <TextField
+          type='password'
+          label='password'
+          placeholder='enter your password'
+          defaultValue={values.password}
+          helperText={values.passwordError}
+          onChange={handleChange('password')}
+        />
+        <br />
+        <Button
+          variant='outlined'
+          label='next'
+          color='primary'
+          style={styles.button}
+          onClick={this.continue}
+        >
+          next
+        </Button>
+        <h3>or</h3>
+        <Button
+          variant='outlined'
+          label='next'
+          color='primary'
+          style={styles.button}
+          onClick={this.register}
+        >
+          register
+        </Button>
+      </form>
     );
   }
 }

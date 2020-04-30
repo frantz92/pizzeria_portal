@@ -176,7 +176,7 @@ const Ordering = ({ orderId = 'Order_1' }) => {
                 <React.Fragment>
                   <CircularProgress
                     variant='determinate'
-                    thickness='2'
+                    thickness={2}
                     value={row.statusBar}
                     style={styles.progressCircle}
                   />

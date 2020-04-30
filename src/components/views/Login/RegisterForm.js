@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -69,88 +68,85 @@ export class FormPersonalDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <div style={styles.container}>
-            <TextField
-              hintText='enter your name'
-              floatingLabelText='name'
-              onChange={handleChange('name')}
-              defaultValue={values.name}
-              errorText={values.nameError}
-            />
-            <TextField
-              hintText='enter your surname'
-              floatingLabelText='surname'
-              onChange={handleChange('surname')}
-              defaultValue={values.surname}
-              errorText={values.surnameError}
-            />
-            <TextField
-              hintText='enter your email'
-              floatingLabelText='email'
-              onChange={handleChange('email')}
-              defaultValue={values.email}
-              errorText={values.emailError}
-            />
-            <TextField
-              type='password'
-              hintText='enter your password'
-              floatingLabelText='password'
-              onChange={handleChange('password')}
-              defaultValue={values.password}
-              errorText={values.passwordError}
-            />
-            <TextField
-              type='password'
-              hintText='confirm your password'
-              floatingLabelText='confirm password'
-              onChange={handleChange('passwordConfirm')}
-              defaultValue={values.passwordConfirm}
-              errorText={values.passwordConfirmError}
-            />
-            <RadioGroup
-              style={styles.radio}
-              row
-              aria-label='position'
-              name='position'
-            >
-              <FormControlLabel
-                value='waiter'
-                control={<Radio color='primary' />}
-                label='Waiter'
-                labelPlacement='end'
-              />
-              <FormControlLabel
-                value='cook'
-                control={<Radio color='primary' />}
-                label='Cook'
-                labelPlacement='start'
-              />
-            </RadioGroup>
-          </div>
-          <div style={styles.buttonContainer}>
-            <Button
-              variant='outlined'
-              label='back'
-              color='primary'
-              style={styles.button}
-              onClick={this.back}
-            >
-              back
-            </Button>
-            <Button
-              variant='outlined'
-              label='next'
-              color='primary'
-              style={styles.button}
-              onClick={this.continue}
-            >
-              next
-            </Button>
-          </div>
-        </React.Fragment>
-      </MuiThemeProvider>
+      <form style={styles.container} noValidate autoComplete='off'>
+        <TextField
+          label='name'
+          placeholder='enter your name'
+          defaultValue={values.name}
+          helperText={values.nameError}
+          onChange={handleChange('name')}
+        />
+        <TextField
+          label='surname'
+          placeholder='enter your surname'
+          defaultValue={values.surname}
+          helperText={values.surnameError}
+          onChange={handleChange('surname')}
+        />
+        <TextField
+          label='email'
+          placeholder='enter your email'
+          defaultValue={values.email}
+          helperText={values.emailError}
+          onChange={handleChange('email')}
+        />
+        <TextField
+          type='password'
+          label='password'
+          placeholder='enter your password'
+          defaultValue={values.password}
+          helperText={values.passwordError}
+          onChange={handleChange('password')}
+        />
+        <TextField
+          type='password'
+          label='password'
+          placeholder='confirm your password'
+          defaultValue={values.passwordConfirm}
+          helperText={values.passwordConfirmError}
+          onChange={handleChange('passwordConfirm')}
+        />
+
+        <RadioGroup
+          style={styles.radio}
+          row
+          aria-label='position'
+          name='position'
+        >
+          <FormControlLabel
+            value='waiter'
+            control={<Radio color='primary' />}
+            label='Waiter'
+            labelPlacement='end'
+          />
+          <FormControlLabel
+            value='cook'
+            control={<Radio color='primary' />}
+            label='Cook'
+            labelPlacement='start'
+          />
+        </RadioGroup>
+        <div style={styles.buttonContainer}>
+          <Button
+            variant='outlined'
+            label='back'
+            color='primary'
+            style={styles.button}
+            onClick={this.back}
+          >
+            back
+          </Button>
+          <Button
+            variant='outlined'
+            label='next'
+            color='primary'
+            style={styles.button}
+            onClick={this.continue}
+          >
+            next
+          </Button>
+        </div>
+      </form>
     );
   }
 }
